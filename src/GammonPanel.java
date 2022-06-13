@@ -19,7 +19,7 @@ public class GammonPanel extends JPanel{
 	int tokenSize = 50;
 	int gammonW = 800;
 	int gammonH = 650;
-	int offsetX = 300;
+	int offsetX = 200;
 	int offsetY = 150;
 	int centerX = (gammonW/2) + offsetX;
 	int centerY = (gammonH/2) + offsetY;
@@ -70,7 +70,7 @@ public class GammonPanel extends JPanel{
 			Selector selector = selectorList.get(i);
 			// a squared + b squared = c squared
 			double radius = Math.sqrt(Math.pow(x - (selector.getX() + selectorSize/2), 2) + Math.pow(y - (selector.getY() + selectorSize/2), 2));
-			if (radius < selectorSize/2)
+			if (radius < selectorSize/2 && selector.isSelectable())
 			{
 				return selectorList.get(i);
 			}
@@ -82,13 +82,21 @@ public class GammonPanel extends JPanel{
 	public void paintComponent (Graphics g)
 	{
 		super.paintComponent(g);
+		
 		//g.drawLine(0, 0, 800, 600);
 		// offset:
 		g.drawImage(board, offsetX, offsetY, null);
 		
 		for (int i = 0; i < selectorList.size(); i++)
 		{
-			g.setColor(Color.CYAN);
+			if (selectorList.get(i).isSelectable())
+			{
+				g.setColor(Color.CYAN);
+			}
+			else
+			{
+				g.setColor(Color.DARK_GRAY);
+			}
 			g.fillOval(selectorList.get(i).getX(), selectorList.get(i).getY(), selectorSize, selectorSize);
 			g.setColor(Color.BLACK);
 			g.drawOval(selectorList.get(i).getX(), selectorList.get(i).getY(), selectorSize, selectorSize);
@@ -99,12 +107,27 @@ public class GammonPanel extends JPanel{
 		{
 			if (tokenList.get(i).getAffiliation() == p1A)
 			{
-				g.setColor(Color.GRAY);
+				if (tokenList.get(i).isSelected())
+				{
+					g.setColor(Color.LIGHT_GRAY);
+				}
+				else
+				{
+					g.setColor(Color.GRAY);
+				}
 			}
 			else
 			{
-				g.setColor(Color.RED);
+				if (tokenList.get(i).isSelected() == true)
+				{
+					g.setColor(Color.PINK);
+				}
+				else
+				{
+					g.setColor(Color.RED);
+				}
 			}
+			
 			g.fillOval(tokenList.get(i).getX(), tokenList.get(i).getY(), tokenSize, tokenSize);
 			g.setColor(Color.BLACK);
 			g.drawOval(tokenList.get(i).getX(), tokenList.get(i).getY(), tokenSize, tokenSize);

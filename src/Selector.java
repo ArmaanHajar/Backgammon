@@ -3,16 +3,16 @@ public class Selector {
 
 	int x;
 	int y;
-	boolean selected;
+	boolean selectable;
 	int name;
 	
 	
 	
-	public Selector (int newx, int newy, boolean newselected, int newname)
+	public Selector (int newx, int newy, boolean newselectable, int newname)
 	{
 		x = newx;
 		y = newy;
-		selected = newselected;
+		selectable = newselectable;
 		name = newname;
 	}
 
@@ -40,12 +40,12 @@ public class Selector {
 		this.name = name;
 	}
 
-	public boolean isSelected() {
-		return selected;
+	public boolean isSelectable() {
+		return selectable;
 	}
 
-	public void setSelected(boolean selected) {
-		this.selected = selected;
+	public void setSelectable(boolean selected) {
+		this.selectable = selected;
 	}
 	
 }

@@ -58,8 +58,7 @@ public class DicePanel extends JPanel{
 	public void paintComponent (Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawLine(0, 0, 800, 800);
-		g.drawImage(randDiceImage1, 000, 100, null);
-		g.drawImage(randDiceImage2, 100, 100, null);
+		g.drawImage(randDiceImage1, 065, 100, null);
+		g.drawImage(randDiceImage2, 165, 100, null);
 	}
 }
